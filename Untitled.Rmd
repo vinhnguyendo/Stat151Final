@@ -10,4 +10,6 @@ knitr::opts_chunk$set(echo = TRUE)
 #Nozomi test code
 
 #hello world
+
+#hai guyz this is amal
 ```
