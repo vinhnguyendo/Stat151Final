@@ -1,10 +1,26 @@
 ---
-title: "test"
-author: "test"
+title: "FINAL PROJECT TITLE"
+author: "REMEMBER TO OUR IDS IN HERE" 
 date: "11/21/2016"
 output: pdf_document
 ---
 
+#Call in data
+```{r setup, include=FALSE}
+#Call in IPEDS data
+  #Stored in Vinh's Dropbox account
+  #####MUST CONNECT TO INTERNET#####
+IPEDS <-read.csv(file="https://dl.dropboxusercontent.com/u/4893048/compiled_ipeds_csv.csv", header=TRUE) 
+
+#If calling data from a local folder, uncomment these 2 lines instead
+#setwd("") #put working directory 
+#IPEDS <- read.csv("compiled_ipeds_csv.csv")
+
+``` 
+
+
+
+#Test code
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 #Nozomi test code
