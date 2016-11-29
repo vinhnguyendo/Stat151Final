@@ -5,12 +5,54 @@ date: "11/21/2016"
 output: pdf_document
 ---
 
-#Call in data
+#[1] Set up libraries
+```{r loadlibs, echo=FALSE, message=FALSE, warning=FALSE}
+# Put all libraries here. 
+library( texreg )
+library( arm )
+library( lme4 )
+library( foreign )
+library( plyr)
+library( sqldf) 
+library( foreign )
+library( sqldf)
+library( ggplot2 ) 
+library( scales )
+library( pander)
+library( nlme)
+library( lattice)
+library( Hmisc)
+   
+# Put global display options here
+options(digits=2)
+
+# This flag is to control whether analytic code blocks should display
+# the code itself.
+# When turning in work, you should knit two pdfs, 
+# with this variable set to FALSE and TRUE respectively.
+# When FALSE you have a nice report with results only.  When TRUE you have 
+# the code itself so we can see what you did.
+show.code = FALSE
+# show.code = TRUE # just comment this line out to make it false
+
+# This controls whether the code for making plots should be shown.
+# When turning in your work, you should leave this as FALSE, 
+# unless there is something about your plots that is not working as it should.
+show.plot.code = show.code
+show.plot.code = FALSE #  comment this out to make it follow the overall config
+```
+
+
+#[2] Call in Data
 ```{r setup, include=FALSE}
 #Call in IPEDS data
   #Stored in Vinh's Dropbox account
   #####MUST CONNECT TO INTERNET#####
 IPEDS <-read.csv(file="https://dl.dropboxusercontent.com/u/4893048/compiled_ipeds_csv.csv", header=TRUE) 
+
+str(IPEDS)
+#20606 observations
+#160 vars
 
 #If calling data from a local folder, uncomment these 2 lines instead
 #setwd("") #put working directory 
@@ -20,12 +62,38 @@ IPEDS <-read.csv(file="https://dl.dropboxusercontent.com/u/4893048/compiled_iped
 
 
 
-#Test code
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-#Nozomi test code
+#Put empty sections below just as templates
 
-#hello world
+#[3]
+```{r include=TRUE}
 
-#hai guyz this is amal
 ```
+
+#[4]
+```{r include=TRUE}
+
+```
+
+#[5]
+```{r include=TRUE}
+
+```
+
+#[6]
+```{r include=TRUE}
+
+```
+
+#[7]
+```{r include=TRUE}
+
+```
+
+#[8]
+```{r include=TRUE}
+
+```
+
+
+
+
