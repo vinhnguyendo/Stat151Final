@@ -93,9 +93,36 @@ summary(IPEDS$admitwomen)
 
 #[3]
 ```{r include=TRUE}
+<<<<<<< HEAD
 
  
 
+=======
+# Create dataset with complete cases
+levels(IPEDS$level)
+dat <- subset(IPEDS, IPEDS$level=="Four or more years")
+
+newdat <- dat[complete.cases(dat$completeasiantot, dat$completeblacktot, dat$completenatamtot, 
+                             dat$completehisptot, dat$completewhitetot, dat$completetot,
+                             dat$enrolasiantot_ft, dat$enrolblacktot_ft, dat$enrolnatamtot_ft, 
+                             dat$enrolhisptot_ft, dat$enrolwhitetot_ft, dat$enroltot_ft,
+                             dat$enrolasiantot_pt, dat$enrolblacktot_pt, dat$enrolnatamtot_pt, 
+                             dat$enrolhisotot_pt, dat$enrolwhitetot_pt, dat$enroltot_pt,
+                             dat$unitid, dat$instname, dat$year, dat$state, dat$zip, 
+                             dat$pct_stategrant, dat$pct_instgrant, dat$pct_fedgrant, dat$pct_loan, 
+                             dat$stategrant_a, dat$instgrant_a, dat$fedgrant_a, dat$loan_a,
+                             dat$satvr25, dat$satvr75, dat$satmt25, dat$satmt75, dat$admgpa,
+                             dat$carnegieenrl, dat$carnegiebasic), ]
+
+# Create main outcome variables
+attach(newdat)
+newdat$urmgrad <- 
+  
+  (newdat$completeblacktot + newdat$completenatamtot + newdat$completehisptot)/newdat$complettot
+
+subset(newdat, persistblack==NA)
+newdat[newdat$persistblack==NA,]
+>>>>>>> origin/master
 ```
 
 #[4]
@@ -125,4 +152,9 @@ summary(IPEDS$admitwomen)
 
 
 
+#This is test code
+```{r include=FALSE}
 
+#testing out a comment 
+
+```
