@@ -96,4 +96,9 @@ str(IPEDS)
 
 
 
+#This is test code
+```{r include=FALSE}
 
+#testing out a comment 
+
+```
