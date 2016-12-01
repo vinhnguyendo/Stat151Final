@@ -1,8 +1,8 @@
 ---
 title: "FINAL PROJECT TITLE"
-author: "REMEMBER TO OUR IDS IN HERE" 
+author: "REMEMBER TO OUR IDS IN HERE"
 date: "11/21/2016"
-output: pdf_document
+output: html_document
 ---
 
 #[1] Set up libraries
@@ -44,7 +44,7 @@ show.plot.code = FALSE #  comment this out to make it follow the overall config
 
 
 #[2] Call in Data
-```{r setup, include=FALSE}
+```{r setup, include=TRUE}
 #Call in IPEDS data
   #Stored in Vinh's Dropbox account
   #####MUST CONNECT TO INTERNET#####
@@ -54,9 +54,36 @@ str(IPEDS)
 #20606 observations
 #160 vars
 
+summary(IPEDS)
+
 #If calling data from a local folder, uncomment these 2 lines instead
 #setwd("") #put working directory 
 #IPEDS <- read.csv("compiled_ipeds_csv.csv")
+
+xnam <- paste("x", 1:25, sep="")
+fmla <- as.formula(paste("y ~ ", paste(xnam, collapse= "+")))
+print(fmla)
+
+#predictors <- c("pct_", "admitwomen")
+#model <- as.formula(paste("applytot ~ ", paste(predictors, collapse= "+"),"+ (1|state)"))
+ 
+#testmod2 <- lmer(model,data=IPEDS)
+#summary(testmod2)
+
+
+ 
+summary(IPEDS$applytot)
+summary(IPEDS$admitmen)
+summary(IPEDS$admitwomen)
+
+#race varies within college (4 per college)
+#college varies within state and sector
+#interact random effect for state and race
+
+#some colleges are better than other, so they will just raise everybody, so that's college-level random effect
+#there's some completion rate by race, that's the grand mean, change in completion rate, which is impacted by instution which will raise everyone up or down, which is impacted by state and sector
+#
+
 
 ``` 
 
@@ -66,6 +93,8 @@ str(IPEDS)
 
 #[3]
 ```{r include=TRUE}
+
+ 
 
 ```
 
