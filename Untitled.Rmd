@@ -79,17 +79,16 @@ newdat <- dat[complete.cases(dat$completeasiantot, dat$completeblacktot, dat$com
                              dat$unitid, dat$instname, dat$year, dat$state, dat$zip, 
                              dat$pct_stategrant, dat$pct_instgrant, dat$pct_fedgrant, dat$pct_loan, 
                              dat$stategrant_a, dat$instgrant_a, dat$fedgrant_a, dat$loan_a,
-                             dat$satvr25, dat$satvr75, dat$satmt25, dat$satmt75, dat$admgpa,
+                             dat$satvr25, dat$satvr75, dat$satmt25, dat$satmt75,
                              dat$carnegieenrl, dat$carnegiebasic), ]
 
-# Create main outcome variables
-attach(newdat)
-newdat$urmgrad <- 
-  
-  (newdat$completeblacktot + newdat$completenatamtot + newdat$completehisptot)/newdat$complettot
+# Create outcome variable
+newdat$urmgrad <- newdat$completeblacktot + newdat$completenatamtot + newdat$completehisptot
+newdat$urmgradpct <- newdat$urmgrad/newdat$completetot
 
-subset(newdat, persistblack==NA)
-newdat[newdat$persistblack==NA,]
+# Run lmer
+
+
 ```
 
 #[4]
