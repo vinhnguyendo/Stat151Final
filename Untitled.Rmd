@@ -8,6 +8,8 @@ output: pdf_document
 #[1] Set up libraries
 ```{r loadlibs, echo=FALSE, message=FALSE, warning=FALSE}
 # Put all libraries here. 
+
+library(sjPlot)
 library( texreg )
 library( arm )
 library( lme4 )
@@ -22,6 +24,7 @@ library( pander)
 library( nlme)
 library( lattice)
 library( Hmisc)
+library(effects)
    
 # Put global display options here
 options(digits=2)
@@ -84,12 +87,40 @@ newdat <- dat[complete.cases(dat$completeasiantot, dat$completeblacktot, dat$com
 
 # Create outcome variable
 newdat$urmgrad <- newdat$completeblacktot + newdat$completenatamtot + newdat$completehisptot
-newdat$urmgradpct <- newdat$urmgrad/newdat$completetot
+newdat$urmgradpct <- newdat$urmgrad/newdat$completetot*100
 
 # Run lmer
-M1 <- lmer(urmgradpct ~ 1 + (1|year) + (1|state) + (1|carnegiebasic), data=newdat)
-M2 <- 
+lmer(urmgradpct ~ 1 + (1|year)  + (1|state)  + (1|carnegiebasic), data=newdat)
+    
+#Models we've tried
+#(A) lmer(urmgradpct ~ 1  + (1|year) + (1|state) + (1|carnegiebasic), data=newdat)
+#(B)  lmer(urmgradpct ~ 1  + hbcu + (1|year) + (1|state) + (1|carnegiebasic), data=newdat)
+#(C)  lmer(urmgradpct ~ 1  + hbcu + (1|year) + (1|state) + (1|carnegieenrl), data=newdat)
+#(D)  lmer(urmgradpct ~ 1  + hbcu + (1|year) + (1|state) + (1|sector), data=newdat
+#WE LIKE MODEL C
 
+
+M1 <- lmer(urmgradpct ~ 1  + hbcu + (1|year) + (1|state) + (1|carnegieenrl), data=newdat)
+M2 <- lmer(urmgradpct ~ 1  + hbcu + satvr25 + pct_grant + (1|year) + (1|state) + (1|carnegieenrl), data=newdat)
+
+
+summary(M1)
+sjp.lmer(M1,type="re")
+confint(M1)
+
+summary(M2)
+sjp.lmer(M2,type="re")
+confint(M2)
+
+sum(1:2, 3:5)
+
+
+texreg(list(M1,M2))
+
+
+
+
+ 
 ```
 
 #[4]
