@@ -8,6 +8,8 @@ output: pdf_document
 #[1] Set up libraries
 ```{r loadlibs, echo=FALSE, message=FALSE, warning=FALSE}
 # Put all libraries here. 
+
+library(effects)
 library( texreg )
 library( arm )
 library( lme4 )
@@ -83,17 +85,29 @@ newdat <- dat[complete.cases(dat$completeasiantot, dat$completeblacktot, dat$com
                              dat$carnegieenrl, dat$carnegiebasic), ]
 
 # Create outcome variable
-newdat$urmgrad <- newdat$completeblacktot + newdat$completenatamtot + newdat$completehisptot
-newdat$urmgradpct <- newdat$urmgrad/newdat$completetot
+dat$urmgrad <- dat$completeblacktot + dat$completenatamtot + dat$completehisptot
+dat$urmgradpct <- dat$urmgrad/dat$completetot*100
+histogram(dat$urmgradpct)
 
 # Run lmer
-M1 <- lmer(urmgradpct ~ 1 + (1|year) + (1|state) + (1|carnegiebasic), data=newdat)
-M2 <- 
+M1 <- lmer(urmgradpct ~ 1 + (1|year) + (1|state) + (1|carnegieenrl), data=dat)
+plot(ranef(M1))
+
+
+# Try new outcome
+dat$a <- sum(dat$enrolblacktot_ft,dat$enrolblacktot_pt, na.rm=TRUE)
+dat$b <- dat$completeblacktot/dat$a
+dat$c <- dat$enrolwhitetot_ft + dat$enrolwhitetot_pt
+dat$d <- dat$completewhitetot/dat$c
+dat$prop <- dat$b/dat$d
+
+histogram(dat$prop)
 
 ```
 
 #[4]
 ```{r include=TRUE}
+
 
 ```
 
